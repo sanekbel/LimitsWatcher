@@ -44,7 +44,7 @@ Claude (5-hour session, weekly, per-model, plus API spend), Codex / ChatGPT, Git
 
 ## Install
 
-1. Download `LimitsWatcher-1.0.dmg` from [Releases](../../releases).
+1. Download `LimitsWatcher-1.0.1.dmg` from [Releases](../../releases).
 2. Open it and drag **LimitsWatcher** to **Applications**.
 3. The app isn't notarized by Apple, so the first launch is blocked. Open it once, then go to
    **System Settings → Privacy & Security** and click **Open Anyway**. Or run:

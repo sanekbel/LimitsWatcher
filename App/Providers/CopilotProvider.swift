@@ -38,11 +38,17 @@ final class CopilotProvider: UsageProvider, @unchecked Sendable {
         let snapshots = J.dict(root["quota_snapshots"]) ?? [:]
 
         var windows: [UsageWindow] = []
-        for (key, label) in [("premium_interactions", L("Premium-запросы", "Premium requests")), ("chat", L("Чат", "Chat"))] {
+        for (key, label) in [
+            ("premium_interactions", L("Premium-запросы", "Premium requests")),
+            ("chat", L("Чат", "Chat")),
+            ("completions", L("Автодополнения", "Completions")),
+        ] {
             guard let s = J.dict(snapshots[key]),
                   (s["unlimited"] as? Bool) != true,
                   let remainingPct = J.double(s["percent_remaining"])
             else { continue }
+            // The free plan reports premium requests as entitlement 0 / 0% remaining: not included, not used up.
+            if let entitlement = J.double(s["entitlement"]), entitlement <= 0 { continue }
 
             var detail: String?
             if let entitlement = J.double(s["entitlement"]), let remaining = J.double(s["remaining"]), entitlement > 0 {
