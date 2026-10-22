@@ -44,7 +44,7 @@ Claude (5-hour session, weekly, per-model, plus API spend), Codex / ChatGPT, Git
 
 ## Install
 
-1. Download `LimitsWatcher-1.0.1.dmg` from [Releases](../../releases).
+1. Download `LimitsWatcher-1.0.2.dmg` from [Releases](../../releases).
 2. Open it and drag **LimitsWatcher** to **Applications**.
 3. The app isn't notarized by Apple, so the first launch is blocked. Open it once, then go to
    **System Settings → Privacy & Security** and click **Open Anyway**. Or run:
@@ -64,7 +64,7 @@ Open the menu bar icon → gear → **Services**.
 
 | Service | What it needs |
 |---|---|
-| Claude (subscription) | A signed-in [Claude Code](https://code.claude.com) (`claude`). macOS asks for access to the "Claude Code-credentials" Keychain item — choose **Always Allow**. |
+| Claude (subscription) | A signed-in [Claude Code](https://code.claude.com) (`claude`). macOS asks for access to the "Claude Code-credentials" Keychain item — choose **Always Allow** and it won't ask again (turn off in Settings → Services). |
 | Claude API | An Admin API key (`sk-ant-admin…`, organizations only). Set a monthly budget to get a percentage. |
 | Codex / ChatGPT | A signed-in Codex CLI (`codex login`). |
 | GitHub Copilot | The Copilot plugin in VS Code / JetBrains, or a token pasted in the settings (`gh auth token`). |

@@ -26,6 +26,7 @@ struct SettingsView: View {
 
 private struct ServicesTab: View {
     @EnvironmentObject var settings: AppSettings
+    @AppStorage(Keychain.foreignAlwaysAllowedKey) private var keychainAlwaysAllowed = false
 
     private func binding(_ id: ProviderID) -> Binding<Bool> {
         Binding(
@@ -65,8 +66,12 @@ private struct ServicesTab: View {
 
             Section {
                 Toggle(ProviderID.claude.title + L(" (подписка)", " (subscription)"), isOn: binding(.claude))
-                hint(L("Берёт вход из Claude Code (~/.claude или Keychain). Нужна подписка Pro/Max/Team и `claude` с логином. При первом запуске macOS спросит доступ к Keychain — выберите «Всегда разрешать».",
-                       "Uses the Claude Code login (~/.claude or Keychain). Needs a Pro/Max/Team subscription and a signed-in `claude`. On first run macOS asks for Keychain access — choose “Always Allow”."))
+                hint(L("Берёт вход из Claude Code (~/.claude или Keychain). Нужна подписка Pro/Max/Team и `claude` с логином.",
+                       "Uses the Claude Code login (~/.claude or Keychain). Needs a Pro/Max/Team subscription and a signed-in `claude`."))
+                Toggle(L("Не спрашивать пароль Keychain", "Don't ask for the Keychain password"), isOn: $keychainAlwaysAllowed)
+                    .disabled(!keychainAlwaysAllowed)
+                hint(L("Включается, когда в запросе macOS вы выбираете «Всегда разрешать». Выключите, чтобы macOS снова спрашивала.",
+                       "Turns on when you choose “Always Allow” in the macOS prompt. Turn it off to have macOS ask again."))
             }
 
             Section {
